@@ -1,0 +1,27 @@
+PODS:
+  - Expecta (1.0.6)
+  - Specta (1.0.7)
+  - SYDCentralPivot (0.1.0)
+
+DEPENDENCIES:
+  - Expecta
+  - Specta
+  - SYDCentralPivot (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Expecta
+    - Specta
+
+EXTERNAL SOURCES:
+  SYDCentralPivot:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
+  Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
+  SYDCentralPivot: edb395846644abe81ca2c790afcbdd74b186cda0
+
+PODFILE CHECKSUM: 90239b7c252bea4b6b6dc94c9ab1371e1a98b48d
+
+COCOAPODS: 1.10.1

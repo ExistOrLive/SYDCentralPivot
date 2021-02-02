@@ -1,0 +1,22 @@
+{
+  "name": "SYDCentralPivot",
+  "version": "0.1.0",
+  "summary": "A short description of SYDCentralPivot.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/ExistOrLive/SYDCentralPivot",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "ExistOrLive": "2068531506@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/ExistOrLive/SYDCentralPivot.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "SYDCentralPivot/Classes/**/*"
+}
