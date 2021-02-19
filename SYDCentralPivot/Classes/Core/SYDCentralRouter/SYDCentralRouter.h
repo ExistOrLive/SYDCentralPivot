@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@class SYDCentralFactory;
-@class SYDCentralRouterModel;
+#import "SYDCentralFactory.h"
+#import "SYDCentralRouterModel.h"
 
 
 @interface SYDCentralRouter : NSObject
@@ -25,15 +25,4 @@
 
 @end
 
-@interface SYDCentralRouter (ViewController)
-
-- (void) enterViewController:(const NSString * _Nonnull) viewControllerKey withViewControllerConfig:(id _Nonnull) config withParam:(NSDictionary * _Nullable) paramDic;
-
-@end
-
-@interface SYDCentralRouter (SYDService)
-
-- (id _Nullable) sendMessageToService:(const NSString * _Nonnull) serviceKey withSEL:(SEL _Nonnull) message withPara:(NSArray * _Nullable) paramArray isInstanceMessage:(BOOL) isInstanceMessage;
-
-@end
 
