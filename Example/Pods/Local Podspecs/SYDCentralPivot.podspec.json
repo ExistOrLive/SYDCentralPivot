@@ -1,8 +1,8 @@
 {
   "name": "SYDCentralPivot",
-  "version": "0.1.0",
-  "summary": "A short description of SYDCentralPivot.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "1.1.0",
+  "summary": "A Simple Factory and Router for UIViewController,ServiceModel and some other object",
+  "description": "Factory and Router",
   "homepage": "https://github.com/ExistOrLive/SYDCentralPivot",
   "license": {
     "type": "MIT",
@@ -13,10 +13,42 @@
   },
   "source": {
     "git": "https://github.com/ExistOrLive/SYDCentralPivot.git",
-    "tag": "0.1.0"
+    "tag": "1.1.0"
   },
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "SYDCentralPivot/Classes/**/*"
+  "subspecs": [
+    {
+      "name": "Core",
+      "platforms": {
+        "ios": "9.0"
+      },
+      "source_files": "SYDCentralPivot/Classes/Core/**/*"
+    },
+    {
+      "name": "VC",
+      "platforms": {
+        "ios": "9.0"
+      },
+      "source_files": "SYDCentralPivot/Classes/VC/**/*",
+      "dependencies": {
+        "SYDCentralPivot/Core": [
+
+        ]
+      }
+    },
+    {
+      "name": "Service",
+      "platforms": {
+        "ios": "9.0"
+      },
+      "source_files": "SYDCentralPivot/Classes/Service/**/*",
+      "dependencies": {
+        "SYDCentralPivot/Core": [
+
+        ]
+      }
+    }
+  ]
 }

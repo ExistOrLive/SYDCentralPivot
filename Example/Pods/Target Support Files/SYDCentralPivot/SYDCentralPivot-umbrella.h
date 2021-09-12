@@ -12,10 +12,9 @@
 
 #import "SYDCentralRouterModel.h"
 #import "SYDCentralFactory.h"
-#import "SYDCentralPivotHeader.h"
+#import "SYDCentralPivotCoreHeader.h"
 #import "SYDCentralQueuePool.h"
 #import "SYDCentralRouter.h"
-#import "UIViewController+SYDRouter.h"
 
 FOUNDATION_EXPORT double SYDCentralPivotVersionNumber;
 FOUNDATION_EXPORT const unsigned char SYDCentralPivotVersionString[];

@@ -6,20 +6,8 @@
 //  Copyright © 2019年 zhumeng. All rights reserved.
 //
 
-#import "SYDCentralRouterModel.h"
-
-@implementation SYDCentralRouterModel
-
-@end
-
-@implementation SYDCentralRouterServiceModel
-
-@end
+#import "SYDCentralRouterViewControllerConfig.h"
 
 @implementation SYDCentralRouterViewControllerConfig
 
 @end
-
-
-
-

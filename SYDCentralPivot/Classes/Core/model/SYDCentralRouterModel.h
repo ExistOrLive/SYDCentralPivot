@@ -47,16 +47,6 @@ typedef enum
 
 
 
-#pragma mark -
 
-@interface SYDCentralRouterViewControllerConfig : NSObject
 
-@property(nonatomic,assign) BOOL isNavigated;
 
-@property(nonatomic,strong) UIViewController * sourceViewController;
-
-@property(nonatomic,assign) BOOL hidesBottomBarWhenPushed;
-
-@property(nonatomic,assign) BOOL animated;
-
-@end
