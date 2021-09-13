@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SYDCentralPivot'
-  s.version          = '1.2.0'
+  s.version          = '1.3.0'
   s.summary          = 'A Simple Factory and Router for UIViewController,ServiceModel and some other object'
 
 # This description is used to generate tags and improve search results.
