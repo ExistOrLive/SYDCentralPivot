@@ -1,6 +1,5 @@
 #import "SYDCentralRouter+SYDService.h"
 #import "SYDCentralFactory+SYDService.h"
-#import "SYDCentralQueuePool.h"
 #import <objc/runtime.h>
 
 @implementation SYDCentralRouter (SYDService)
@@ -8,19 +7,19 @@
 - (id) sendMessageToService:(const NSString *) serviceKey withSEL:(SEL) message withPara:(NSArray *) paramArray isInstanceMessage:(BOOL) isInstanceMessage
 {
     NSLog(@"SYDCentralRouter_sendMessageToService: serviceKey[%@] message[%@] paramArray[%@]",serviceKey, NSStringFromSelector(message),paramArray);
-    
-    id serviceBean = [self.centralFactory getSYDServiceBean:serviceKey];
-    
-    if(!serviceBean)
-    {
-        NSLog(@"SYDCentralRouter_sendMessageToService: serviceBean for [%@] not exist",serviceKey);
-        return nil;
-    }
-    
+        
     NSInvocation * invocation = nil;
     
     if(isInstanceMessage)
     {
+        id serviceBean = [self.centralFactory getSYDServiceBean:serviceKey];
+        
+        if(!serviceBean)
+        {
+            NSLog(@"SYDCentralRouter_sendMessageToService: serviceBean for [%@] not exist",serviceKey);
+            return nil;
+        }
+        
         if(![serviceBean respondsToSelector:message])
         {
             NSLog(@"SYDCentralRouter_sendMessageToService: serviceBean [%@] can not respondsToInstanceSelector[%@]",serviceKey,NSStringFromSelector(message));
@@ -30,34 +29,23 @@
     }
     else
     {
-        if(![[serviceBean class] respondsToSelector:message])
-        {
-            NSLog(@"SYDCentralRouter_sendMessageToService: serviceBean [%@] can not respondsToClassSelector[%@]",serviceKey,NSStringFromSelector(message));
+        id serviceClass = [self.centralFactory getBeanClass:serviceKey];
+        
+        if(!serviceClass){
+            NSLog(@"SYDCentralRouter_sendMessageToService: serviceClass for [%@] not exist",serviceKey);
             return nil;
         }
-        invocation =  [SYDCentralRouter injectArguments:paramArray withSelector:message withReceiver:[serviceBean class]];
+        
+        if(![serviceClass respondsToSelector:message])
+        {
+            NSLog(@"SYDCentralRouter_sendMessageToService: serviceClass [%@] can not respondsToClassSelector[%@]",serviceKey,NSStringFromSelector(message));
+            return nil;
+        }
+        invocation =  [SYDCentralRouter injectArguments:paramArray withSelector:message withReceiver:serviceClass];
     }
 
-    
-    SYDCentralRouterServiceModel * model = (SYDCentralRouterServiceModel *)[self.centralFactory getCentralRouterModel:serviceKey];
-    
-    if([[model asyncMethodArray] containsObject:NSStringFromSelector(message)])
-    {
-        NSLog(@"SYDCentralRouter_sendMessageToService: async perform message [%@] for service[%@]",NSStringFromSelector(message),serviceKey);
-        
-        [[SYDCentralQueuePool sharedInstance] asyncPerformBlock:^{
-            [invocation invoke];
-        } inQueueForTag:[model queueTag]];
-        
-        return [SYDCentralRouter getReturnValue:invocation isAsync:YES];
-    }
-    else
-    {
-        NSLog(@"SYDCentralRouter_sendMessageToService: sync perform message [%@] for service[%@]",NSStringFromSelector(message),serviceKey);
-        
-        [invocation invoke];
-        return [SYDCentralRouter getReturnValue:invocation isAsync:NO];
-    }
+    [invocation invoke];
+    return [SYDCentralRouter getReturnValue:invocation];
 }
 
 
@@ -281,16 +269,11 @@
 
 
 
-+ (id) getReturnValue:(NSInvocation *) invocation isAsync:(BOOL) isAsync
-{
++ (id) getReturnValue:(NSInvocation *) invocation{
+    
     NSMethodSignature * methodSignature = [invocation methodSignature];
     char returnType = *[methodSignature methodReturnType];
-    
-    if(isAsync)
-    {
-        return nil;
-    }
-    
+        
     __autoreleasing id returnValue = nil;
     
     switch(returnType)

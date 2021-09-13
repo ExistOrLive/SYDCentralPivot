@@ -1,6 +1,6 @@
 {
   "name": "SYDCentralPivot",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "summary": "A Simple Factory and Router for UIViewController,ServiceModel and some other object",
   "description": "Factory and Router",
   "homepage": "https://github.com/ExistOrLive/SYDCentralPivot",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/ExistOrLive/SYDCentralPivot.git",
-    "tag": "1.1.0"
+    "tag": "1.2.0"
   },
   "platforms": {
     "ios": "9.0"
@@ -24,14 +24,16 @@
       "platforms": {
         "ios": "9.0"
       },
-      "source_files": "SYDCentralPivot/Classes/Core/**/*"
+      "source_files": "SYDCentralPivot/Classes/Core/*",
+      "public_header_files": "SYDCentralPivot/Classes/Core/*.h"
     },
     {
       "name": "VC",
       "platforms": {
         "ios": "9.0"
       },
-      "source_files": "SYDCentralPivot/Classes/VC/**/*",
+      "source_files": "SYDCentralPivot/Classes/VC/*",
+      "public_header_files": "SYDCentralPivot/Classes/VC/*.h",
       "dependencies": {
         "SYDCentralPivot/Core": [
 
@@ -43,7 +45,8 @@
       "platforms": {
         "ios": "9.0"
       },
-      "source_files": "SYDCentralPivot/Classes/Service/**/*",
+      "source_files": "SYDCentralPivot/Classes/Service/*",
+      "public_header_files": "SYDCentralPivot/Classes/Service/*.h",
       "dependencies": {
         "SYDCentralPivot/Core": [
 

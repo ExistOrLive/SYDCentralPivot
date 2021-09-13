@@ -27,6 +27,8 @@
 
 - (void) addConfigWithFilePath:(NSString * _Nonnull) filePath withBundle:(NSBundle * _Nullable) bundle;
 
+#pragma mark - 获取 SYDCentralRouterModel
+
 - (SYDCentralRouterModel * _Nullable) getCentralRouterModel:(const NSString * _Nonnull) beanKey;
 
 - (Class _Nullable) getBeanClass:(const NSString * _Nonnull) beanKey;

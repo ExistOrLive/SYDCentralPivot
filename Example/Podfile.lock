@@ -1,12 +1,20 @@
 PODS:
   - Expecta (1.0.6)
   - Specta (1.0.7)
-  - SYDCentralPivot/Core (1.1.0)
+  - SYDCentralPivot (1.2.0):
+    - SYDCentralPivot/Core (= 1.2.0)
+    - SYDCentralPivot/Service (= 1.2.0)
+    - SYDCentralPivot/VC (= 1.2.0)
+  - SYDCentralPivot/Core (1.2.0)
+  - SYDCentralPivot/Service (1.2.0):
+    - SYDCentralPivot/Core
+  - SYDCentralPivot/VC (1.2.0):
+    - SYDCentralPivot/Core
 
 DEPENDENCIES:
   - Expecta
   - Specta
-  - SYDCentralPivot/Core (from `../`)
+  - SYDCentralPivot (from `../`)
 
 SPEC REPOS:
   trunk:
@@ -16,12 +24,15 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   SYDCentralPivot:
     :path: "../"
+    :subspec:
+      - Core
+      - VC
 
 SPEC CHECKSUMS:
   Expecta: 3b6bd90a64b9a1dcb0b70aa0e10a7f8f631667d5
   Specta: 3e1bd89c3517421982dc4d1c992503e48bd5fe66
-  SYDCentralPivot: 8925d7f4b61b78b04858619bb38dc6510ae5861e
+  SYDCentralPivot: 86bcfc5d6bdc39702d6b6d5e1a084ed3b5b26374
 
-PODFILE CHECKSUM: e8083258bc2b574fd9555af94675d48fd72261dd
+PODFILE CHECKSUM: 6daab6bf150e895766356e72ac9fe9786bdd0b53
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.0

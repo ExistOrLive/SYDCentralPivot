@@ -1,16 +1,25 @@
 
 #import "SYDCentralFactory+ViewController.h"
+#import "UIViewController+SYDRouter.h"
 #import <objc/runtime.h>
 #import <objc/message.h>
 
 @implementation SYDCentralFactory (ViewController)
 
-- (UIViewController *) getOneUIViewController:(const NSString *) viewControllerKey
-{
+- (Class) getViewControllerClass:(const NSString *) viewControllerKey{
+    Class cla = [self getBeanClass:viewControllerKey];
+    if([cla isSubclassOfClass:[UIViewController class]]){
+        return cla;
+    } else {
+        return nil;
+    }
+}
+
+- (UIViewController *) getOneUIViewController:(const NSString *) viewControllerKey{
+    
     Class viewControllerClass = [self getViewControllerClass:viewControllerKey];
     
-    if(!viewControllerClass)
-    {
+    if(!viewControllerClass){
        NSLog(@"SYDCentralFactory_getOneUIViewController: class for [%@] is not exist",viewControllerKey);
         return nil;
     }
@@ -29,8 +38,7 @@
     UIViewController *(*getOneViewController)(id,SEL) = (UIViewController * (*)(id,SEL))method_getImplementation(getOneViewControllerMethod);
     void (*setVCKey)(id,SEL,const NSString *) = (void (*)(id,SEL,const NSString *))method_getImplementation(setVCKEYMethod);
     
-    
-    if(getOneViewController){
+    if(getOneViewController && setVCKey){
         UIViewController *controller  = getOneViewController(viewControllerClass,
                                                              getOneViewControllerSEL);
         setVCKey(controller,setVCKEYSEL,viewControllerKey);
@@ -41,6 +49,7 @@
         return class_createInstance(viewControllerClass, 0);
     }
 }
+
 
 - (UIViewController *) getOneUIViewController:(const NSString *) viewControllerKey withInjectParam:(NSDictionary *) param
 {
@@ -65,36 +74,5 @@
 
     return viewController;
 }
-
-- (Class) getViewControllerClass:(const NSString *) viewControllerKey
-{
-    Class viewControllerClass = nil;
-    
-    if(!self.viewControllerModelMapCache)
-    {
-        self.viewControllerModelMapCache = [[NSMutableDictionary alloc] init];
-    }
-    else
-    {
-        viewControllerClass = [self.viewControllerModelMapCache objectForKey:viewControllerKey];
-    }
-    
-    if(!viewControllerClass)
-    {
-        SYDCentralRouterModel * model = [self getCentralRouterModel:viewControllerKey];
-        viewControllerClass = [model cla];
-        
-        if(!model || !viewControllerClass)
-        {
-            NSLog(@"SYDCentralFactory_getViewControllerClass: model for [%@] is not exist",viewControllerKey);
-            return nil;
-        }
-        
-        [self.viewControllerModelMapCache setObject:viewControllerClass forKey:viewControllerKey];
-    }
-    
-    return viewControllerClass;
-}
-
 
 @end

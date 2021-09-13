@@ -3,7 +3,7 @@ use_frameworks!
 platform :ios, '9.0'
 
 target 'SYDCentralPivot_Example' do
-  pod 'SYDCentralPivot', :path => '../', :subspecs => ['Core']
+  pod 'SYDCentralPivot', :path => '../', :subspec => ['Core','VC']
 
   target 'SYDCentralPivot_Tests' do
     inherit! :search_paths

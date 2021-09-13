@@ -30,18 +30,21 @@ Pod::Spec.new do |s|
 
   s.subspec 'Core' do |core| 
     core.ios.deployment_target = '9.0'
-    core.source_files = 'SYDCentralPivot/Classes/Core/**/*'
+    core.source_files = 'SYDCentralPivot/Classes/Core/*'
+    core.public_header_files = 'SYDCentralPivot/Classes/Core/*.h'
   end
 
   s.subspec 'VC' do |vc| 
     vc.ios.deployment_target = '9.0'
-    vc.source_files = 'SYDCentralPivot/Classes/VC/**/*'
+    vc.source_files = 'SYDCentralPivot/Classes/VC/*'
+    vc.public_header_files = 'SYDCentralPivot/Classes/VC/*.h'
     vc.dependency 'SYDCentralPivot/Core'
   end
   
   s.subspec 'Service' do |service| 
     service.ios.deployment_target = '9.0'
-    service.source_files = 'SYDCentralPivot/Classes/Service/**/*'
+    service.source_files = 'SYDCentralPivot/Classes/Service/*'
+    service.public_header_files = 'SYDCentralPivot/Classes/Service/*.h'
     service.dependency 'SYDCentralPivot/Core'
   end
   

@@ -8,7 +8,6 @@
 
 #import "SYDCentralRouter.h"
 #import "SYDCentralFactory.h"
-#import "SYDCentralQueuePool.h"
 
 @interface SYDCentralRouter()
 
@@ -17,8 +16,8 @@
 
 @implementation SYDCentralRouter
 
-+ (instancetype) sharedInstance
-{
++ (instancetype) sharedInstance{
+    
     static SYDCentralRouter * centeralRouter = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -29,10 +28,8 @@
 }
 
 
-- (instancetype) init
-{
-    if(self = [super init])
-    {
+- (instancetype) init{
+    if(self = [super init]){
         _centralFactory = [SYDCentralFactory sharedInstance];
     }
     return self;

@@ -9,8 +9,7 @@
 #import "SYDAppDelegate.h"
 #import "SYDViewController.h"
 
-#import "SYDCentralPivot/SYDCentralPivotCoreHeader.h"
-
+#import "SYDCentralPivot/SYDCentralFactory+ViewController.h"
 @implementation SYDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,7 +21,7 @@
     model.modelType = SYDCentralRouterModelType_UIViewController;
     [[SYDCentralFactory sharedInstance] addConfig:@[model]];
     
-    UIViewController *controller = [[SYDCentralFactory sharedInstance] getCommonBean:@"SYDViewController"];
+    UIViewController *controller = [[SYDCentralFactory sharedInstance]  getOneUIViewController:@"SYDViewController"];
     
     self.window = [[UIWindow alloc] init];
     self.window.rootViewController = controller;
