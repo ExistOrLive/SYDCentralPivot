@@ -20,17 +20,25 @@ typedef NS_ENUM(NSInteger,SYDCentralRouterModelType){
 
 @interface SYDCentralRouterModel : NSObject <NSCopying>
 
-@property(nonatomic,strong) NSString * modelKey;
+@property(nonatomic,strong) NSString * _Nonnull modelKey;
 
 @property(nonatomic,assign) SYDCentralRouterModelType modelType;
 
-@property(nonatomic,strong) Class cla;
+@property(nonatomic,strong) Class _Nonnull cla;
 
 @property(nonatomic,assign,getter=isSingle) BOOL single;                                      // 是否为单例类
 
-@property(nonatomic,strong) NSString * singletonMethodStr;                      // 单例方法；仅当isSingle为YES有效
+@property(nonatomic,strong) NSString * _Nullable singletonMethodStr;                      // 单例方法；仅当isSingle为YES有效
 
 //@property(nonatomic,strong) id singleton;                                       // 单例；仅当isSingle为YES有效
+
+- (instancetype _Nonnull ) initWithModelKey:(NSString *_Nonnull) modelKey
+                        modelType:(SYDCentralRouterModelType)modelType
+                              cla:(Class _Nonnull ) cla
+                           single:(BOOL) single
+               singletonMethodStr:(NSString * _Nullable)singletonMethodStr;
+
+
 
 @end
 

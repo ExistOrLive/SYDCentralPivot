@@ -23,6 +23,23 @@
     return newModel;
 }
 
+- (instancetype)initWithModelKey:(NSString *)modelKey
+                       modelType:(SYDCentralRouterModelType)modelType
+                             cla:(Class)cla
+                          single:(BOOL)single
+              singletonMethodStr:(NSString *)singletonMethodStr{
+   
+    if(self = [super init]){
+        self.modelKey = modelKey;
+        self.modelType = modelType;
+        self.cla = cla;
+        self.single = single;
+        self.singletonMethodStr = singletonMethodStr;
+    }
+    return self;
+    
+}
+
 @end
 
 
