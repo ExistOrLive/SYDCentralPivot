@@ -9,6 +9,7 @@
 #import "SYDAppDelegate.h"
 #import "SYDViewController.h"
 
+#import "SYDCentralPivot/SYDCentralRouterModel.h"
 #import "SYDCentralPivot/SYDCentralFactory+ViewController.h"
 @implementation SYDAppDelegate
 
@@ -16,12 +17,18 @@
 {
     // Override point for customization after application launch.
     SYDCentralRouterModel *model = [SYDCentralRouterModel new];
-    model.cla = NSClassFromString(@"SYDViewController");
+    model.claStr = @"SYDViewController";
     model.modelKey = @"SYDViewController";
+    model.moduleName = nil;
     model.modelType = SYDCentralRouterModelType_UIViewController;
+    [[SYDCentralFactory sharedInstance] addLogHandler:^(NSString * _Nonnull errorMessage) {
+        NSLog(@"SYDLog_%@",errorMessage);
+    }];
     [[SYDCentralFactory sharedInstance] addConfig:@[model]];
+  
     
     UIViewController *controller = [[SYDCentralFactory sharedInstance]  getOneUIViewController:@"SYDViewController"];
+    
     
     self.window = [[UIWindow alloc] init];
     self.window.rootViewController = controller;

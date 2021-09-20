@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SYDCentralPivot'
-  s.version          = '1.4.0'
+  s.version          = '1.4.1'
   s.summary          = 'A Simple Factory and Router for UIViewController,ServiceModel and some other object'
 
 # This description is used to generate tags and improve search results.
@@ -39,13 +39,6 @@ Pod::Spec.new do |s|
     vc.source_files = 'SYDCentralPivot/Classes/VC/*'
     vc.public_header_files = 'SYDCentralPivot/Classes/VC/*.h'
     vc.dependency 'SYDCentralPivot/Core'
-  end
-  
-  s.subspec 'Service' do |service| 
-    service.ios.deployment_target = '9.0'
-    service.source_files = 'SYDCentralPivot/Classes/Service/*'
-    service.public_header_files = 'SYDCentralPivot/Classes/Service/*.h'
-    service.dependency 'SYDCentralPivot/Core'
   end
   
   # s.resource_bundles = {

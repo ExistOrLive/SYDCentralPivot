@@ -20,25 +20,26 @@ typedef NS_ENUM(NSInteger,SYDCentralRouterModelType){
 
 @interface SYDCentralRouterModel : NSObject <NSCopying>
 
-@property(nonatomic,strong) NSString * _Nonnull modelKey;
+@property(nonatomic,copy) NSString* _Nullable modelKey;
 
 @property(nonatomic,assign) SYDCentralRouterModelType modelType;
 
-@property(nonatomic,strong) Class _Nonnull cla;
+@property(nonatomic,copy) NSString* _Nullable claStr;
 
-@property(nonatomic,assign,getter=isSingle) BOOL single;                                      // 是否为单例类
+@property(nonatomic,copy) NSString* _Nullable moduleName;                                 // 支持Swift全限定类名
 
-@property(nonatomic,strong) NSString * _Nullable singletonMethodStr;                      // 单例方法；仅当isSingle为YES有效
+@property(nonatomic,assign,getter=isSingle) BOOL single;                                  // 是否为单例类
 
-//@property(nonatomic,strong) id singleton;                                       // 单例；仅当isSingle为YES有效
-
-- (instancetype _Nonnull ) initWithModelKey:(NSString *_Nonnull) modelKey
-                        modelType:(SYDCentralRouterModelType)modelType
-                              cla:(Class _Nonnull ) cla
-                           single:(BOOL) single
-               singletonMethodStr:(NSString * _Nullable)singletonMethodStr;
+@property(nonatomic,strong) NSString* _Nullable singletonMethodStr;                      // 单例方法；仅当isSingle为YES有效
 
 
+
+- (instancetype _Nonnull ) initWithModelKey:(NSString *_Nullable) modelKey
+                                  modelType:(SYDCentralRouterModelType)modelType
+                                     claStr:(NSString* _Nullable ) claStr
+                                 moduleName:(NSString* _Nullable) moduleName
+                                     single:(BOOL) single
+                         singletonMethodStr:(NSString * _Nullable)singletonMethodStr;
 
 @end
 

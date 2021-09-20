@@ -7,9 +7,19 @@
 //
 
 import Foundation
-import SYDCentralPivot
 
-func getObject() -> SYDCentralRouterModel{
-   SYDCentralRouterModel(modelKey: "SYDAppDelegate", modelType: SYDCentralRouterModelType.other, cla: SYDAppDelegate.self, single: false, singletonMethodStr: nil)
+class Test : NSObject {
+    
+    @objc var str1: String?
+    @objc var int1: Int = 0
+    
+    @objc class func test() -> String{
+        print("this is test");
+        return "YES";
+    }
+    
+    @objc func test() -> String{
+        return "\(str1 ?? "nil")_\(int1)"
+    }
 }
 
